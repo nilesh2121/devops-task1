@@ -13,7 +13,7 @@ resource "aws_instance" "webserver" {
    # Copy the ssh key to host 
     provisioner "remote-exec" {
       inline = [
-        "ssh-copy-id devops@aws_instance.webserver.private_ip"
+        "ssh-copy-id /home/devops/.ssh devops@aws_instance.webserver.private_ip"
       ]
       
     
@@ -55,7 +55,7 @@ resource "aws_instance" "dbserver" {
        # Copy the ssh key to host 
     provisioner "remote-exec" {
       inline = [
-        "ssh-copy-id devops@aws_instance.dbserver.private_ip"
+        "ssh-copy-id /home/devops/.ssh devops@aws_instance.dbserver.private_ip"
       ]
       
     
