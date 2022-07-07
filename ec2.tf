@@ -30,26 +30,7 @@ resource "aws_instance" "webserver" {
   
      
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #       "sudo adduser --disabled-password --gecos '' devops",
-  #       "sudo mkdir -p /home/devops/.ssh",
-  #       "sudo touch /home/devops/.ssh/authorized_keys",
-  #       "sudo echo '${var.keypath}' > authorized_keys",
-  #       "sudo mv authorized_keys /home/devops/.ssh",
-  #       "sudo chown -R devops:devops /home/devops/.ssh",
-  #       "sudo chmod 700 /home/devops/.ssh",
-  #       "sudo chmod 600 /home/devops/.ssh/authorized_keys",
-  #       "sudo usermod -aG sudo devops"
 
-  #  ]
-
-  #   connection {
-  #    user     = "ubuntu"
-  #    host     = self.public_ip
-  #   }
-
-  # }    
 
 
 }
@@ -68,31 +49,7 @@ resource "aws_instance" "dbserver" {
 
     user_data = file("script/user.sh")
 
-#   provisioner "remote-exec" {
-#     inline = [
-#         "sudo adduser --disabled-password --gecos '' devops",
-#         "sudo mkdir -p /home/devops/.ssh",
-#         "sudo touch /home/devops/.ssh/authorized_keys",
-#         "sudo echo '${var.keypath}' > authorized_keys",
-#         "sudo mv authorized_keys /home/devops/.ssh",
-#         "sudo chown -R devops:devops /home/devops/.ssh",
-#         "sudo chmod 700 /home/devops/.ssh",
-#         "sudo chmod 600 /home/devops/.ssh/authorized_keys",
-#         "sudo usermod -aG sudo devops"
-        
-#    ]
-
-#     connection {
-#      type         = "ssh"
-#      user         = "ubuntu"
-#      host         = self.private_ip
-#      private_key  = file("~/.ssh/id_rsa")
-#      agent        = false
-#      timeout      = "4m"
- 
-#     }
-
-#   }     
+   
 
 
 }
