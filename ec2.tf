@@ -25,7 +25,7 @@ resource "aws_instance" "webserver" {
     #   timeout = "4m"
     # }
 
-     user_data = file("/script/user.sh")
+     user_data = file("script/user.sh")
 
   
      
@@ -66,7 +66,7 @@ resource "aws_instance" "dbserver" {
       Name = "db-server"
     }
 
-    user_data = file("/script/user.sh")
+    user_data = file("script/user.sh")
 
 #   provisioner "remote-exec" {
 #     inline = [
