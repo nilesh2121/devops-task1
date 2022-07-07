@@ -18,12 +18,13 @@ resource "aws_instance" "webserver" {
       timeout = "4m"
     } 
 
-    provisioner "remote-exec" {
-      inline = [
-        "#!/bin/bash",
-        "sudo ssh-copy-id devops@aws_instance.webserver.private_ip:/home/devops/.ssh/"
-      ]
+    provisioner "file" {
+      source = "/home/devops/.ssh/id_rsa"
+      destination = "/home/devops/.ssh/"
 
+
+    
+    }
     
     }
 
@@ -59,11 +60,10 @@ resource "aws_instance" "dbserver" {
       timeout = "4m"
     } 
 
-    provisioner "remote-exec" {
-      inline = [
-        "#!/bin/bash",
-        "sudo ssh-copy-id devops@aws_instance.webserver.private_ip:/home/devops/.ssh/"
-      ]
+    provisioner "file" {
+      source = "/home/devops/.ssh/id_rsa"
+      destination = "/home/devops/.ssh/"
+
 
     
     }
