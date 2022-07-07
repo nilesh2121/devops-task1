@@ -51,6 +51,23 @@ resource "aws_instance" "dbserver" {
 
     user_data = file("script/user.sh")
 
+       # Copy the ssh key to host 
+    provisioner "remote-exec" {
+      inline = [
+        "ssh-copy-id devops@aws_instance.dbserver.private_ip"
+      ]
+      
+    
+    }
+
+    connection {
+      type = "ssh"
+      host = aws_instance.dbserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/key/.ssh/id_rsa")
+      timeout = "4m"
+    }
+
    
 
 
