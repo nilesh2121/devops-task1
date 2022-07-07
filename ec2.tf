@@ -10,11 +10,29 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
- 
+   # Copy the ssh key to host 
+    provisioner "remote-exec" {
+      inline = [
+        "ssh-copy-id -i ~/.ssh/id_rsa.pub devops@aws_instance.webserver.private_ip"
+      ]
+      
+    
+    }
+
+    connection {
+      type = "ssh"
+      host = aws_instance.webserver.private_ip
+      user = "devops"
+      password = "india@123"
+      private_key = file("/home/devops/key/.ssh/id_rsa")
+      timeout = "4m"
+    }
+
      user_data = file("script/user.sh")
 
   
      
+
 
 
 
@@ -34,9 +52,30 @@ resource "aws_instance" "dbserver" {
 
     user_data = file("script/user.sh")
 
+       # Copy the ssh key to host 
+    provisioner "remote-exec" {
+      inline = [
+        "ssh-copy-id -i ~/.ssh/id_rsa.pub devops@aws_instance.dbserver.private_ip"
+      ]
+      
+    
+    }
+
+    connection {
+      type = "ssh"
+      host = aws_instance.dbserver.private_ip
+      user = "devops"
+      password = "india@123"
+      private_key = file("/home/devops/key/.ssh/id_rsa")
+      timeout = "4m"
+    }
+
+   
 
 
 }
+
+
 
 
 # added the keypaire location - production
