@@ -36,7 +36,7 @@ resource "aws_instance" "dbserver" {
 
 
 
-
+}
 
 
 # added the keypaire location - production
