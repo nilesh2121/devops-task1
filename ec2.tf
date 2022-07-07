@@ -10,23 +10,22 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-    connection {
-      type = "ssh"
-      host = aws_instance.webserver.private_ip
-      user = "ubuntu"
-      private_key = file("/home/devops/key/.ssh/id_rsa")
-      timeout = "4m"
-    } 
+    # connection {
+    #   type = "ssh"
+    #   host = aws_instance.webserver.private_ip
+    #   user = "ubuntu"
+    #   private_key = file("/home/devops/key/.ssh/id_rsa")
+    #   timeout = "4m"
+    # } 
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa"
-      destination = "/home/devops/.ssh/"
-
+    # provisioner "remote-exec" {
+    #   inline = [
+    #     "#!/bin/bash",
+    #     "sudo ssh-copy-id devops@aws_instance.webserver.private_ip:/home/devops/.ssh/"
+    #   ]
 
     
-    }
-    
-    }
+    # }
 
    
 
@@ -52,21 +51,21 @@ resource "aws_instance" "dbserver" {
       Name = "db-server"
     }
 
-   connection {
-      type = "ssh"
-      host = aws_instance.dbserver.private_ip
-      user = "ubuntu"
-      private_key = file("/home/devops/key/.ssh/id_rsa")
-      timeout = "4m"
-    } 
+  #  connection {
+  #     type = "ssh"
+  #     host = aws_instance.dbserver.private_ip
+  #     user = "ubuntu"
+  #     private_key = file("/home/devops/key/.ssh/id_rsa")
+  #     timeout = "4m"
+  #   } 
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa"
-      destination = "/home/devops/.ssh/"
+  #   provisioner "file" {
+  #     source = "/home/devops/.ssh/id_rsa"
+  #     destination = "/home/devops/.ssh/"
 
 
     
-    }
+  #   }
 
     
 
