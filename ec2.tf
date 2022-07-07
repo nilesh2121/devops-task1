@@ -10,20 +10,22 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-   
-    # provisioner "file" {
-    #   source = "~/.ssh/."
-    #   destination = "/tmp/"
+   # Copy the ssh key to host 
+    provisioner "remote-exec" {
+      inline = [
+        "ssh-copy-id devops@aws_instance.webserver.private_ip"
+      ]
+      
     
-    # }
+    }
 
-    # connection {
-    #   type = "ssh"
-    #   host = self.public_ip
-    #   user = "ubuntu"
-    #   private_key = file("~/.ssh/id_rsa")
-    #   timeout = "4m"
-    # }
+    connection {
+      type = "ssh"
+      host = aws_instance.webserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/key/.ssh/id_rsa")
+      timeout = "4m"
+    }
 
      user_data = file("script/user.sh")
 
