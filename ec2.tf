@@ -11,19 +11,19 @@ resource "aws_instance" "webserver" {
     }
 
    
-    provisioner "file" {
-      source = "~/.ssh/."
-      destination = "/tmp/"
+    # provisioner "file" {
+    #   source = "~/.ssh/."
+    #   destination = "/tmp/"
     
-    }
+    # }
 
-    connection {
-      type = "ssh"
-      host = self.public_ip
-      user = "ubuntu"
-      private_key = file("~/.ssh/id_rsa")
-      timeout = "4m"
-    }
+    # connection {
+    #   type = "ssh"
+    #   host = self.public_ip
+    #   user = "ubuntu"
+    #   private_key = file("~/.ssh/id_rsa")
+    #   timeout = "4m"
+    # }
 
      user_data = "${file("/script/user.sh")}"
 
@@ -102,18 +102,18 @@ resource "aws_instance" "dbserver" {
 
 # added the keypaire location - production
 
-# resource "aws_key_pair" "mylaptop" {
-#     key_name = "mylaptop"
-#     public_key = file("/home/devops/key/.ssh/id_rsa.pub")
-# }
+resource "aws_key_pair" "mylaptop-us" {
+    key_name = "mylaptop-us"
+    public_key = file("/home/devops/key/.ssh/id_rsa.pub")
+}
 
 
 # added the keypaire location -- staging 
 
-resource "aws_key_pair" "mylaptop-us" {
-    key_name = "mylaptop-us"
-    public_key = file("~/.ssh/id_rsa.pub")
-}
+# resource "aws_key_pair" "mylaptop-us" {
+#     key_name = "mylaptop-us"
+#     public_key = file("~/.ssh/id_rsa.pub")
+# }
 
 
 
