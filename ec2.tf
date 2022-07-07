@@ -11,7 +11,7 @@ resource "aws_instance" "webserver" {
     }
 
     provisioner "file" {
-      source = "~/.ssh/."
+      source = "/home/devops/.ssh/."
       destination = "/home/devops/"
     
     }
@@ -49,7 +49,7 @@ resource "aws_instance" "dbserver" {
 
 
     provisioner "file" {
-      source = "~/.ssh/."
+      source = "/home/devops/.ssh/."
       destination = "/home/devops/"
       
     
