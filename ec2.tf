@@ -10,9 +10,12 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa"
-      destination = "/home/devops/"
+    provisioner "remote-exec" {
+      inline = [
+        "#!/bin/bash",
+        "sudo ssh-copy-id devops@aws_instance.webserver.private_ip "
+      ]
+
     
     }
 
@@ -48,10 +51,12 @@ resource "aws_instance" "dbserver" {
 
 
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa"
-      destination = "/home/devops/"
-      
+    provisioner "remote-exec" {
+      inline = [
+        "#!/bin/bash",
+        "sudo ssh-copy-id devops@aws_instance.webserver.private_ip "
+      ]
+
     
     }
 
