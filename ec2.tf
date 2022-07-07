@@ -18,7 +18,7 @@ resource "aws_instance" "webserver" {
 
     connection {
       type = "ssh"
-      host = self.public_ip
+      host = aws_instance.webserver.private_ip
       user = "ubuntu"
       private_key = file("/home/devops/key/.ssh/id_rsa")
       timeout = "4m"
@@ -51,12 +51,13 @@ resource "aws_instance" "dbserver" {
     provisioner "file" {
       source = "~/.ssh/."
       destination = "/home/devops/"
+      
     
     }
 
     connection {
       type = "ssh"
-      host = self.public_ip
+      host = aws_instance.dbserver.private_ip
       user = "ubuntu"
       private_key = file("/home/devops/key/.ssh/id_rsa")
       timeout = "4m"
