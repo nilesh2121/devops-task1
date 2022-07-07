@@ -22,7 +22,8 @@ resource "aws_instance" "webserver" {
     connection {
       type = "ssh"
       host = aws_instance.webserver.private_ip
-      user = "ubuntu"
+      user = "devops"
+      password = "india@123"
       private_key = file("/home/devops/key/.ssh/id_rsa")
       timeout = "4m"
     }
@@ -63,7 +64,8 @@ resource "aws_instance" "dbserver" {
     connection {
       type = "ssh"
       host = aws_instance.dbserver.private_ip
-      user = "ubuntu"
+      user = "devops"
+      password = "india@123"
       private_key = file("/home/devops/key/.ssh/id_rsa")
       timeout = "4m"
     }
