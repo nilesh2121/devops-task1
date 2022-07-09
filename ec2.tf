@@ -10,20 +10,20 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-    connection {
-      type = "ssh"
-      host = aws_instance.webserver.private_ip
-      user = "devops"
-      # public_key = "/home/devops/Key/.ssh/id_rsa.pub"
-      private_key = file("/home/devops/Key/.ssh/id_rsa")
-      timeout = "4m"
-    } 
+    # connection {
+    #   type = "ssh"
+    #   host = aws_instance.webserver.private_ip
+    #   user = "devops"
+    #   # public_key = "/home/devops/Key/.ssh/id_rsa.pub"
+    #   private_key = file("/home/devops/Key/.ssh/id_rsa")
+    #   timeout = "4m"
+    # } 
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/rsa.pub"
-      destination = "/home/devops/"
+    # provisioner "file" {
+    #   source = "/home/devops/.ssh/rsa.pub"
+    #   destination = "/home/devops/"
     
-    }
+    # }
 
     
 
