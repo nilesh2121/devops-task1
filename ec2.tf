@@ -19,7 +19,7 @@ resource "aws_instance" "webserver" {
     } 
 
     provisioner "file" {
-      source = "/home/devops/.ssh/rsa.pub"
+      source = "/home/devops/.ssh/id_rsa.pub"
       destination = "/home/devops/"
     
     }
