@@ -14,12 +14,13 @@ resource "aws_instance" "webserver" {
       type = "ssh"
       host = aws_instance.webserver.private_ip
       user = "ubuntu"
+      # password = "nasa@123"
       private_key = file("/home/devops/key/.ssh/id_rsa")
       timeout = "4m"
     } 
 
     provisioner "file" {
-      source = "/home/devops/.ssh/."
+      source = "/home/devops/.ssh/id_rsa"
       destination = "/home/devops/.ssh/"
     
     }
