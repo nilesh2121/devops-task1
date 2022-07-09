@@ -5,7 +5,7 @@
 sudo adduser devops --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password
 
 # add the password
-echo "devops:india@123" | sudo chpasswd
+echo "devops:nasa@123" | sudo chpasswd
 
 #Enable Password Authentication
 sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
