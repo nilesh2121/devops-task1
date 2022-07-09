@@ -10,24 +10,19 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-    # connection {
-    #   type = "ssh"
-    #   host = aws_instance.webserver.private_ip
-    #   user = "ubuntu"
-    #   private_key = file("/home/devops/key/.ssh/id_rsa")
-    #   timeout = "4m"
-    # } 
+    connection {
+      type = "ssh"
+      host = aws_instance.webserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
 
-    # provisioner "remote-exec" {
-    #   inline = [
-    #     "#!/bin/bash",
-    #     "ssh-copy-id '-i /home/devops/.ssh/id_rsa.pub -o StrictHostKeyChecking=no devops@aws_instance.webserver.private_ip"
-    #   ]
-
+    provisioner "file" {
+      source = "~/.ssh/."
+      destination = "/home/devops/.ssh/"
     
-    # }
-
-   
+    }
 
     
 
