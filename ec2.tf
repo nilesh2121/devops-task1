@@ -50,9 +50,9 @@ resource "aws_instance" "dbserver" {
    connection {
       type = "ssh"
       host = aws_instance.dbserver.private_ip
-      user = "devops"
-      password = "nasa@123"
-      # private_key = file("/home/devops/key/.ssh/id_rsa")
+      user = "ubuntu"
+      # password = "nasa@123"
+      private_key = file("/home/devops/key/.ssh/id_rsa")
       timeout = "4m"
     } 
 
