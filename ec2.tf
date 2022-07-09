@@ -19,7 +19,7 @@ resource "aws_instance" "webserver" {
     } 
 
     provisioner "file" {
-      source = "~/.ssh/."
+      source = "/home/devops/.ssh/."
       destination = "/home/devops/.ssh/"
     
     }
