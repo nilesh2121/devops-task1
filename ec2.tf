@@ -13,7 +13,7 @@ resource "aws_instance" "webserver" {
     connection {
       type = "ssh"
       host = aws_instance.webserver.private_ip
-      user = "ubuntu"
+      user = "devops"
       private_key = file("/home/devops/Key/.ssh/id_rsa")
       timeout = "4m"
     } 
