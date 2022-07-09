@@ -19,7 +19,7 @@ resource "aws_instance" "webserver" {
     } 
 
     provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa.pub"
+      source = "/home/devops/.ssh/rsa.pub"
       destination = "/home/devops/"
     
     }
@@ -78,7 +78,7 @@ resource "aws_instance" "dbserver" {
 
 resource "aws_key_pair" "mylaptop-us" {
     key_name = "mylaptop-us"
-    public_key = file("id_rsa.pub")
+    public_key = file("/home/devops/Key/.ssh/id_rsa.pub")
 }
 
 
