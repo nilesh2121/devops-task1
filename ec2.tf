@@ -47,21 +47,21 @@ resource "aws_instance" "dbserver" {
       Name = "db-server"
     }
 
-   connection {
-      type = "ssh"
-      host = aws_instance.dbserver.private_ip
-      user = "ubuntu"
-      private_key = file("/home/devops/Key/.ssh/id_rsa")
-      timeout = "4m"
-    } 
+  #  connection {
+  #     type = "ssh"
+  #     host = aws_instance.dbserver.private_ip
+  #     user = "ubuntu"
+  #     private_key = file("/home/devops/Key/.ssh/id_rsa")
+  #     timeout = "4m"
+  #   } 
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa.pub"
-      destination = "/home/devops/.ssh/"
+  #   provisioner "file" {
+  #     source = "/home/devops/.ssh/id_rsa.pub"
+  #     destination = "/home/devops/.ssh/"
 
 
     
-    }
+  #   }
 
     
 
