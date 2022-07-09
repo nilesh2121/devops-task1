@@ -52,12 +52,12 @@ resource "aws_instance" "dbserver" {
       host = aws_instance.dbserver.private_ip
       user = "devops"
       password = "nasa@123"
-      private_key = file("/home/devops/key/.ssh/id_rsa")
+      # private_key = file("/home/devops/key/.ssh/id_rsa")
       timeout = "4m"
     } 
 
     provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa"
+      source = "/home/devops/.ssh/id_rsa.pub"
       destination = "/home/devops/.ssh/"
 
 
