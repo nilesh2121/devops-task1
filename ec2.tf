@@ -21,7 +21,7 @@ resource "aws_instance" "webserver" {
     provisioner "remote-exec" {
       inline = [
         "#!/bin/bash",
-        "sshpass -p india@123 'ssh-copy-id '-i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no devops@aws_instance.webserver.private_ip"
+        "sudo sshpass -p india@123 'ssh-copy-id '-i /home/devops/.ssh/id_rsa.pub -o StrictHostKeyChecking=no devops@aws_instance.webserver.private_ip"
       ]
 
     
