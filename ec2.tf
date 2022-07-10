@@ -78,8 +78,8 @@ resource "aws_instance" "dbserver" {
 
 resource "aws_key_pair" "mylaptop-us" {
     key_name = "mylaptop-us"
-    # public_key = file("/home/devops/Key/.ssh/id_rsa.pub")
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("/home/devops/Key/.ssh/id_rsa.pub")
+    
 }
 
 
