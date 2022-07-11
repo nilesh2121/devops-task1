@@ -2,8 +2,8 @@
 resource "aws_instance" "webserver" {
     ami = "ami-08d4ac5b634553e16"
     instance_type = "t2.micro"
-    key_name = "terra-key"
-    # key_name = "mylaptop-us"
+    # key_name = "terra-key"
+    key_name = "mylaptop-us"
     subnet_id = data.aws_subnet.public-subnet.id
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.websg.id]
@@ -35,13 +35,21 @@ resource "aws_instance" "webserver" {
 
 }
 
+resource "local_file" "sshkey" {
+  content = "sshkey"
+  filename = file("/home/devops/.ssh/id_rsa")
+  
+  
+  
+}
+
 
 
 resource "aws_instance" "dbserver" {
     ami = "ami-08d4ac5b634553e16"
     instance_type = "t2.micro"
-    key_name = "terra-key"
-    # key_name = "mylaptop-us"
+    # key_name = "terra-key"
+    key_name = "mylaptop-us"
     subnet_id = aws_subnet.private_subnet.id
     vpc_security_group_ids = [aws_security_group.dbsg.id]
     tags = {
@@ -68,6 +76,8 @@ resource "aws_instance" "dbserver" {
 
     user_data = file("script/user.sh")
 
+     
+
    
 
 
@@ -78,11 +88,11 @@ resource "aws_instance" "dbserver" {
 
 # added the keypaire location - production
 
-# resource "aws_key_pair" "mylaptop-us" {
-#     key_name = "mylaptop-us"
-#     public_key = file("/home/devops/Key/.ssh/id_rsa.pub")
+resource "aws_key_pair" "mylaptop-us" {
+    key_name = "mylaptop-us"
+    public_key = file("/home/devops/Key/.ssh/id_rsa.pub")
     
-# }
+}
 
 
 # added the keypaire location -- staging 
