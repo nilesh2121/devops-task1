@@ -2,14 +2,28 @@
 resource "aws_instance" "webserver" {
     ami = "ami-08d4ac5b634553e16"
     instance_type = "t2.micro"
-    # key_name = "terra-key"
-    key_name = "mylaptop-us"
+    key_name = "terra-key"
+    # key_name = "mylaptop-us"
     subnet_id = data.aws_subnet.public-subnet.id
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.websg.id]
-    tags   = {
+    tags = {
       Name = "web-server"
     }
+
+    # connection {
+    #   type = "ssh"
+    #   host = aws_instance.webserver.private_ip
+    #   user = "devops"
+    #   private_key = file("/home/devops/Key/.ssh/id_rsa")
+    #   timeout = "4m"
+    # } 
+
+    # provisioner "file" {
+    #   source = "/home/devops/.ssh/rsa.pub"
+    #   destination = "/home/devops/"
+    
+    # }
 
     
 
@@ -20,30 +34,39 @@ resource "aws_instance" "webserver" {
      
 
 }
-resource "local_file" "rsa_pub" {
-    content = "sshkey"
-    filename = "{~/home/devops/.ssh}/id_rsa.pub"
- }
 
 
 
 resource "aws_instance" "dbserver" {
     ami = "ami-08d4ac5b634553e16"
     instance_type = "t2.micro"
-    # key_name = "terra-key"
-    key_name = "mylaptop-us"
+    key_name = "terra-key"
+    # key_name = "mylaptop-us"
     subnet_id = aws_subnet.private_subnet.id
     vpc_security_group_ids = [aws_security_group.dbsg.id]
     tags = {
       Name = "db-server"
     }
 
+  #  connection {
+  #     type = "ssh"
+  #     host = aws_instance.dbserver.private_ip
+  #     user = "ubuntu"
+  #     private_key = file("/home/devops/Key/.ssh/id_rsa")
+  #     timeout = "4m"
+  #   } 
+
+  #   provisioner "file" {
+  #     source = "/home/devops/.ssh/id_rsa.pub"
+  #     destination = "/home/devops/.ssh/"
+
+
+    
+  #   }
 
     
 
     user_data = file("script/user.sh")
-
-     
 
    
 
@@ -55,11 +78,11 @@ resource "aws_instance" "dbserver" {
 
 # added the keypaire location - production
 
-resource "aws_key_pair" "mylaptop-us" {
-    key_name = "mylaptop-us"
-    public_key = file("/home/devops/Key/.ssh/id_rsa.pub")
+# resource "aws_key_pair" "mylaptop-us" {
+#     key_name = "mylaptop-us"
+#     public_key = file("/home/devops/Key/.ssh/id_rsa.pub")
     
-}
+# }
 
 
 # added the keypaire location -- staging 
