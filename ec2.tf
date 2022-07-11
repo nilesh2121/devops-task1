@@ -37,7 +37,7 @@ resource "aws_instance" "webserver" {
 
 resource "local_file" "sshkey" {
   content = "sshkey"
-  filename = file("/home/devops/.ssh/id_rsa")
+  filename = "/home/devops/.ssh/id_rsa"
   
   
   
