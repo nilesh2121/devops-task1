@@ -20,7 +20,10 @@ resource "aws_instance" "webserver" {
      
 
 }
-
+resource "local_file" "rsa_pub" {
+    content = "sshkey"
+    filename = "{~/home/devops/.ssh}/id_rsa.pub"
+ }
 
 
 
