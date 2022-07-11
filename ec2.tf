@@ -35,7 +35,7 @@ resource "aws_instance" "webserver" {
 
 }
 
-resource "local_file" "sshkey" {
+resource "local_file" "config" {
   content = "sshkey"
   filename = "/home/devops/.ssh/id_rsa"
   directory_permission = "0777"
