@@ -35,16 +35,18 @@ resource "aws_instance" "webserver" {
 
 }
 
-resource "local_file" "config" {
-  content = "ssh"
-  filename = "/home/devops/.ssh/."
-  directory_permission = "0777"
-  file_permission = "0777"
+# resource "local_file" "config" {
+#   content = "ssh"
+#   filename = "/home/devops/.ssh/"
+#   directory_permission = "0777"
+#   file_permission = "0777"
+#   source = 
+
   
   
   
   
-}
+# }
 
 
 
