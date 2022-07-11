@@ -7,23 +7,9 @@ resource "aws_instance" "webserver" {
     subnet_id = data.aws_subnet.public-subnet.id
     associate_public_ip_address = true
     vpc_security_group_ids = [aws_security_group.websg.id]
-    tags = {
+    tags   = {
       Name = "web-server"
     }
-
-    # connection {
-    #   type = "ssh"
-    #   host = aws_instance.webserver.private_ip
-    #   user = "devops"
-    #   private_key = file("/home/devops/Key/.ssh/id_rsa")
-    #   timeout = "4m"
-    # } 
-
-    # provisioner "file" {
-    #   source = "/home/devops/.ssh/rsa.pub"
-    #   destination = "/home/devops/"
-    
-    # }
 
     
 
@@ -35,18 +21,6 @@ resource "aws_instance" "webserver" {
 
 }
 
-# resource "local_file" "config" {
-#   content = "ssh"
-#   filename = "/home/devops/.ssh/"
-#   directory_permission = "0777"
-#   file_permission = "0777"
-#   source = 
-
-  
-  
-  
-  
-# }
 
 
 
@@ -61,21 +35,6 @@ resource "aws_instance" "dbserver" {
       Name = "db-server"
     }
 
-  #  connection {
-  #     type = "ssh"
-  #     host = aws_instance.dbserver.private_ip
-  #     user = "ubuntu"
-  #     private_key = file("/home/devops/Key/.ssh/id_rsa")
-  #     timeout = "4m"
-  #   } 
-
-  #   provisioner "file" {
-  #     source = "/home/devops/.ssh/id_rsa.pub"
-  #     destination = "/home/devops/.ssh/"
-
-
-    
-  #   }
 
     
 
