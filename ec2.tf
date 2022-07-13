@@ -24,7 +24,7 @@ resource "aws_instance" "webserver" {
       inline = [
         #!/bin/bash
         # "sudo ssh-copy-id -i aws_instance.webserver.private_ip"
-        "sudo scp /home/devops/.ssh/id_rsa.pub -o StrictHostKeyChecking=no devops@aws_instance.webserver.private_ip:/home/devops/.ssh/"
+        "sudo scp /home/devops/.ssh/id_rsa.pub devops@aws_instance.webserver.private_ip:/home/devops/.ssh/"
         
       ]
       
@@ -78,7 +78,7 @@ resource "aws_instance" "dbserver" {
       inline = [
         #!/bin/bash
         # "sudo ssh-copy-id -i aws_instance.dbserver.private_ip"
-        "sudo scp /home/devops/.ssh/id_rsa.pub -o StrictHostKeyChecking=no devops@aws_instance.dbserver.private_ip:/home/devops/.ssh/"
+        "sudo scp devops@10.0.0.147:/home/devops/.ssh/id_rsa.pub -o StrictHostKeyChecking=no devops@aws_instance.dbserver.private_ip:/home/devops/.ssh/"
         
       ]
       
