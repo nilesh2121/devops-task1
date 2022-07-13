@@ -12,21 +12,23 @@ resource "aws_instance" "webserver" {
 
     user_data = file("script/user.sh")
     
-    # connection {
-    #   type = "ssh"
-    #   host = aws_instance.webserver.private_ip
-    #   user = "ubuntu"
-    #   private_key = file("/home/devops/Key/.ssh/id_rsa")
-    #   timeout = "4m"
-    # } 
+    connection {
+      type = "ssh"
+      host = aws_instance.webserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/Key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
 
-    # provisioner "remote-exec" {
-    #   inline = [
-    #     "sudo ssh-copy-id devops@aws_instance.dbserver.private_ip:/home/devops/.ssh/"
+    provisioner "remote-exec" {
+      inline = [
+
+        "sudo ssh-copy-id devops@aws_instance.dbserver.private_ip"
+        # "sudo scp devops@10.0.0.147:/home/devops/.ssh/id_rsa.pub devops@aws_instance.dbserver.private_ip"
         
-    #   ]
+      ]
       
-    # }    
+    }    
 
     # provisioner "file" {
     #   source = "/home/devops/.ssh/id_rsa.pub"
@@ -64,21 +66,23 @@ resource "aws_instance" "dbserver" {
     }
     user_data = file("script/user.sh")
 
-  #  connection {
-  #     type = "ssh"
-  #     host = aws_instance.dbserver.private_ip
-  #     user = "ubuntu"
-  #     private_key = file("/home/devops/Key/.ssh/id_rsa")
-  #     timeout = "4m"
-  #   } 
+   connection {
+      type = "ssh"
+      host = aws_instance.dbserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/Key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
 
-  #   provisioner "remote-exec" {
-  #     inline = [
-  #       "cp /home/devops/.ssh/id_rsa.pub  devops@aws_instance.dbserver.private_ip:/home/devops/.ssh/"
+    provisioner "remote-exec" {
+      inline = [
+        #!/bin/bash
+        "sudo ssh-copy-id devops@aws_instance.dbserver.private_ip"
+        # "sudo scp devops@10.0.0.147:/home/devops/.ssh/id_rsa.pub devops@aws_instance.dbserver.private_ip"
         
-  #     ]
+      ]
       
-  #   }
+    } 
 
     # provisioner "file" {
     #   source = "/home/devops/.ssh/id_rsa.pub"
