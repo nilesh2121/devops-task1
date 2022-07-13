@@ -66,13 +66,13 @@ resource "aws_instance" "dbserver" {
     }
     user_data = file("script/user.sh")
 
-  #  connection {
-  #     type = "ssh"
-  #     host = aws_instance.dbserver.private_ip
-  #     user = "ubuntu"
-  #     private_key = file("/home/devops/Key/.ssh/id_rsa")
-  #     timeout = "4m"
-  #   } 
+   connection {
+      type = "ssh"
+      host = aws_instance.dbserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/Key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
 
     provisioner "remote-exec" {
       inline = [
