@@ -16,9 +16,12 @@ resource "aws_instance" "webserver" {
 # resource "local_file" "sshcopy" {
 #   content = "sshcopy"
 #   filename = "/home/devops/.ssh/id_rsa.pub"
+# }
 
   
-# }
+}
+
+
 
 
 
