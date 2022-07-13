@@ -16,6 +16,8 @@ sudo service sshd restart
 #Add Group to visudoers
 echo "%devops ALL=(ALL) NOPASSWD: ALL" | sudo EDITOR="tee -a" visudo
 
+sudo mkdir /home/devops/.ssh
+
 
 
 

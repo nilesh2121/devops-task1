@@ -18,8 +18,8 @@ resource "aws_instance" "webserver" {
     #   timeout = "4m"
     # } 
 
-    # provisioner "file" {
-    #   source = "/home/devops/.ssh/rsa.pub"
+    # provisioner "local-exec" {
+    #   source = "/home/devops/.ssh/id_rsa.pub"
     #   destination = "/home/devops/"
     
     # }
