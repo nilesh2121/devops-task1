@@ -20,9 +20,6 @@ sudo mkdir /home/devops/.ssh
 
 
 
-
-
-
 # # Add Local IAC User
 # sudo useradd -m -p $(openssl passwd -1 <india@123>) devops
 
