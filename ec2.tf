@@ -26,7 +26,7 @@ resource "aws_instance" "webserver" {
     }
 
     provisioner "file" {
-      source = "copy.sh"
+      source = "/script/copy.sh"
       destination = "/tmp/copy.sh"
       
     }
