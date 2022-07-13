@@ -34,7 +34,7 @@ resource "null_resource" "sshcopy" {
 
     provisioner "file" {
       source = "copy.sh"
-      destination = "/tmp/.ssh/"
+      destination = "/tmp/copy.sh"
       
     } 
   
