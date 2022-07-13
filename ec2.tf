@@ -10,14 +10,6 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-   
-      
-    }
-
-    user_data = file("script/user.sh")
-
-resource "null_resource" "sshcopy" {
-
       connection {
       type = "ssh"
       host = aws_instance.webserver.private_ip
@@ -36,9 +28,15 @@ resource "null_resource" "sshcopy" {
       source = "copy.sh"
       destination = "/tmp/copy.sh"
       
-    } 
-  
-}
+    }     
+
+   
+      
+    }
+
+    user_data = file("script/user.sh")
+
+
 
 
 
