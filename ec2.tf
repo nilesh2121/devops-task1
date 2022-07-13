@@ -10,36 +10,38 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-    # connection {
-    #   type = "ssh"
-    #   host = aws_instance.webserver.private_ip
-    #   user = "devops"
-    #   private_key = file("/home/devops/Key/.ssh/id_rsa")
-    #   timeout = "4m"
-    # } 
-
-    # provisioner "local-exec" {
-    #   source = "/home/devops/.ssh/id_rsa.pub"
-    #   destination = "/home/devops/"
+    user_data = file("script/user.sh")
     
-    # }
+    connection {
+      type = "ssh"
+      host = aws_instance.webserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/Key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
+
+    provisioner "local-exec" {
+      source = "/home/devops/.ssh/id_rsa.pub"
+      destination = "/home/devops/.ssh/"
+    
+    }
 
     
 
 
-     user_data = file("script/user.sh")
+     
 
   
      
 
 }
 
-resource "local_file" "sshcopy" {
-  content = "sshcopy"
-  filename = "/home/devops/.ssh/id_rsa.pub"
+# resource "local_file" "sshcopy" {
+#   content = "sshcopy"
+#   filename = "/home/devops/.ssh/id_rsa.pub"
 
   
-}
+# }
 
 
 
@@ -52,26 +54,27 @@ resource "aws_instance" "dbserver" {
     tags = {
       Name = "db-server"
     }
-
-  #  connection {
-  #     type = "ssh"
-  #     host = aws_instance.dbserver.private_ip
-  #     user = "ubuntu"
-  #     private_key = file("/home/devops/Key/.ssh/id_rsa")
-  #     timeout = "4m"
-  #   } 
-
-  #   provisioner "file" {
-  #     source = "/home/devops/.ssh/id_rsa.pub"
-  #     destination = "/home/devops/.ssh/"
-
-
-    
-  #   }
-
-    
-
     user_data = file("script/user.sh")
+
+   connection {
+      type = "ssh"
+      host = aws_instance.dbserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/Key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
+
+    provisioner "file" {
+      source = "/home/devops/.ssh/id_rsa.pub"
+      destination = "/home/devops/.ssh/"
+
+
+    
+    }
+
+    
+
+    
 
    
 
@@ -79,12 +82,12 @@ resource "aws_instance" "dbserver" {
 }
 
 
-resource "local_file" "ssh" {
-  content = "sshcopy"
-  filename = "/home/devops/.ssh/id_rsa.pub"
+# resource "local_file" "ssh" {
+#   content = "sshcopy"
+#   filename = "/home/devops/.ssh/id_rsa.pub"
 
   
-}
+# }
 
 
 
