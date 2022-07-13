@@ -11,19 +11,19 @@ resource "aws_instance" "webserver" {
     }
     user_data = file("script/user.sh")
 
-      connection {
-      type = "ssh"
-      host = aws_instance.webserver.private_ip
-      user = "ubuntu"
-      private_key = file("/home/devops/Key/.ssh/id_rsa")
-      timeout = "4m"
-    } 
+    #   connection {
+    #   type = "ssh"
+    #   host = aws_instance.webserver.private_ip
+    #   user = "ubuntu"
+    #   private_key = file("/home/devops/Key/.ssh/id_rsa")
+    #   timeout = "4m"
+    # } 
 
-    provisioner "file" {
-      source = "/tmp/id_rsa.pub"
-      destination = "/tmp/authorized_keys"
+    # provisioner "file" {
+    #   source = "/tmp/id_rsa.pub"
+    #   destination = "/tmp/authorized_keys"
       
-    }
+    # }
 
     # provisioner "file" {
     #   source = "/script/copy.sh"
