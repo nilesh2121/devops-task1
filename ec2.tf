@@ -20,11 +20,19 @@ resource "aws_instance" "webserver" {
       timeout = "4m"
     } 
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa.pub"
-      destination = "/home/devops/.ssh/"
+    provisioner "remote-exec" {
+      inline = [
+        "sudo cp /home/devops/.ssh/id_rsa.pub devops@aws_instance.webserver.private_ip"
+        
+      ]
+      
+    }    
+
+    # provisioner "file" {
+    #   source = "/home/devops/.ssh/id_rsa.pub"
+    #   destination = "/home/devops/.ssh/"
     
-    }
+    # }
 
     
 
@@ -64,13 +72,21 @@ resource "aws_instance" "dbserver" {
       timeout = "4m"
     } 
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa.pub"
-      destination = "/home/devops/.ssh/"
+    provisioner "remote-exec" {
+      inline = [
+        "sudo cp /home/devops/.ssh/id_rsa.pub devops@aws_instance.dbserver.private_ip"
+        
+      ]
+      
+    }
+
+    # provisioner "file" {
+    #   source = "/home/devops/.ssh/id_rsa.pub"
+    #   destination = "/home/devops/.ssh/"
 
 
     
-    }
+    # }
 
     
 
