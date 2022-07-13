@@ -11,40 +11,7 @@ resource "aws_instance" "webserver" {
     }
 
     user_data = file("script/user.sh")
-    
-    # connection {
-    #   type = "ssh"
-    #   host = aws_instance.webserver.private_ip
-    #   user = "ubuntu"
-    #   private_key = file("/home/devops/Key/.ssh/id_rsa")
-    #   timeout = "4m"
-    # } 
 
-    # provisioner "remote-exec" {
-    #   inline = [
-    #     #!/bin/bash
-    #     # "sudo ssh-copy-id -i aws_instance.webserver.private_ip"
-    #     "sudo scp -i  /home/devops/.ssh/id_rsa.pub devops@aws_instance.webserver.private_ip:/home/devops/.ssh/"
-        
-    #   ]
-      
-    # }    
-
-    # provisioner "file" {
-    #   source = "/home/devops/.ssh/id_rsa.pub"
-    #   destination = "/home/devops/.ssh/"
-    
-    # }
-
-    
-
-
-     
-
-  
-     
-
-}
 
 resource "local_file" "sshcopy" {
   content = "sshcopy"
@@ -66,31 +33,7 @@ resource "aws_instance" "dbserver" {
     }
     user_data = file("script/user.sh")
 
-  #  connection {
-  #     type = "ssh"
-  #     host = aws_instance.dbserver.private_ip
-  #     user = "ubuntu"
-  #     private_key = file("/home/devops/Key/.ssh/id_rsa")
-  #     timeout = "4m"
-  #   } 
 
-  #   provisioner "remote-exec" {
-  #     inline = [
-  #       #!/bin/bash
-  #       # "sudo ssh-copy-id -i aws_instance.dbserver.private_ip"
-  #       "sudo scp -i /home/devops/.ssh/id_rsa.pub devops@aws_instance.dbserver.private_ip:/home/devops/.ssh/"
-        
-  #     ]
-      
-  #   } 
-
-    #   provisioner "file" {
-    #     source = "/home/devops/.ssh/id_rsa.pub"
-    #     destination = "/home/devops/.ssh/"
-
-
-    
-    # }
 
 
 
