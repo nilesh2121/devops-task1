@@ -46,12 +46,12 @@ resource "aws_instance" "webserver" {
 
 }
 
-# resource "local_file" "sshcopy" {
-#   content = "sshcopy"
-#   filename = "/home/devops/.ssh/id_rsa.pub"
+resource "local_file" "sshcopy" {
+  content = "sshcopy"
+  filename = "/home/devops/.ssh/id_rsa.pub"
 
   
-# }
+}
 
 
 
@@ -97,12 +97,12 @@ resource "aws_instance" "dbserver" {
 }
 
 
-# resource "local_file" "ssh" {
-#   content = "sshcopy"
-#   filename = "/home/devops/.ssh/id_rsa.pub"
+resource "local_file" "ssh" {
+  content = "sshcopy"
+  filename = "/home/devops/.ssh/id_rsa.pub"
 
   
-# }
+}
 
 
 
