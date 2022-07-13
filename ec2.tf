@@ -21,7 +21,7 @@ resource "aws_instance" "webserver" {
 
     provisioner "file" {
       source = "/tmp/id_rsa.pub"
-      destination = "/tmp/"
+      destination = "/id_rsa.pub/"
       
     }
 
