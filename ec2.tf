@@ -34,9 +34,9 @@ resource "aws_instance" "webserver" {
       
     }
 
-    user_data = file("script/user.sh")
+    
 
-
+user_data = file("script/user.sh")
 
 
 
@@ -61,7 +61,7 @@ resource "aws_instance" "dbserver" {
     tags = {
       Name = "db-server"
     }
-    user_data = file("script/user.sh")
+    
 
     # connection {
     #   type = "ssh"
@@ -76,7 +76,7 @@ resource "aws_instance" "dbserver" {
     #   destination = "/tmp/.ssh/"
       
     # }    
-
+user_data = file("script/user.sh")
 
 
 
