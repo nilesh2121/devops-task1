@@ -10,6 +10,12 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
+    provisioner "file" {
+      source = "/home/devops/.ssh/id_rsa.pub"
+      destination = "/home/devops/.ssh/"
+      
+    }
+
     user_data = file("script/user.sh")
 
 
@@ -35,6 +41,12 @@ resource "aws_instance" "dbserver" {
       Name = "db-server"
     }
     user_data = file("script/user.sh")
+
+    provisioner "file" {
+      source = "/home/devops/.ssh/id_rsa.pub"
+      destination = "/home/devops/.ssh/"
+      
+    }    
 
 
 
