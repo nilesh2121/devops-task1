@@ -84,9 +84,9 @@ resource "aws_instance" "dbserver" {
       
   #   } 
 
-    # provisioner "file" {
-    #   source = "/home/devops/.ssh/id_rsa.pub"
-    #   destination = "/home/devops/.ssh/"
+    #   provisioner "file" {
+    #     source = "/home/devops/.ssh/id_rsa.pub"
+    #     destination = "/home/devops/.ssh/"
 
 
     
