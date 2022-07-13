@@ -20,7 +20,7 @@ resource "aws_instance" "webserver" {
       timeout = "4m"
     } 
 
-    provisioner "local-exec" {
+    provisioner "file" {
       source = "/home/devops/.ssh/id_rsa.pub"
       destination = "/home/devops/.ssh/"
     
