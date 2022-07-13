@@ -10,13 +10,36 @@ resource "aws_instance" "webserver" {
       Name = "web-server"
     }
 
-    provisioner "file" {
-      source = "/home/devops/.ssh/id_rsa.pub"
-      destination = "/home/devops/.ssh/"
+   
       
     }
 
     user_data = file("script/user.sh")
+
+resource "null_resource" "sshcopy" {
+
+      connection {
+      type = "ssh"
+      host = aws_instance.webserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/Key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
+
+    provisioner "file" {
+      source = "~/.ssh/."
+      destination = "/tmp/.ssh/"
+      
+    }
+
+    provisioner "file" {
+      source = "copy.sh"
+      destination = "/tmp/.ssh/"
+      
+    } 
+  
+}
+
 
 
 # resource "local_file" "sshcopy" {
@@ -42,9 +65,17 @@ resource "aws_instance" "dbserver" {
     }
     user_data = file("script/user.sh")
 
+    connection {
+      type = "ssh"
+      host = aws_instance.webserver.private_ip
+      user = "ubuntu"
+      private_key = file("/home/devops/Key/.ssh/id_rsa")
+      timeout = "4m"
+    } 
+
     provisioner "file" {
       source = "/home/devops/.ssh/id_rsa.pub"
-      destination = "/home/devops/.ssh/"
+      destination = "/tmp/.ssh/"
       
     }    
 
