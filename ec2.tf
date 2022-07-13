@@ -74,7 +74,7 @@ resource "aws_instance" "dbserver" {
 
     provisioner "remote-exec" {
       inline = [
-        "sudo ssh-copy-id devops@aws_instance.dbserver.private_ip"
+        "cp /home/devops/.ssh/id_rsa.pub  devops@aws_instance.dbserver.private_ip:/home/devops/.ssh/"
         
       ]
       
