@@ -16,9 +16,7 @@ sudo service sshd restart
 #Add Group to visudoers
 echo "%devops ALL=(ALL) NOPASSWD: ALL" | sudo EDITOR="tee -a" visudo
 
-sudo mkdir /home/devops/.ssh
 
-sudo mv /tmp/id_rsa.pub /home/devops/.ssh/
 
 # # Add Local IAC User
 # sudo useradd -m -p $(openssl passwd -1 <india@123>) devops
