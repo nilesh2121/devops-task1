@@ -1,6 +1,6 @@
 # added the ec2 instance details 
 resource "aws_instance" "webserver" {
-    ami = "ami-08d4ac5b634553e16"
+    ami = "ami-0b472ef474e991a66"
     instance_type = "t2.micro"
     key_name = "mylaptop-us"
     subnet_id = data.aws_subnet.public-subnet.id
@@ -9,7 +9,7 @@ resource "aws_instance" "webserver" {
     tags = {
       Name = "web-server"
     }
-    user_data = file("script/user.sh")
+    # user_data = file("script/user.sh")
 
     #   connection {
     #   type = "ssh"
@@ -55,7 +55,7 @@ resource "aws_instance" "webserver" {
 
 
 resource "aws_instance" "dbserver" {
-    ami = "ami-08d4ac5b634553e16"
+    ami = "ami-0b472ef474e991a66"
     instance_type = "t2.micro"
     key_name = "mylaptop-us"
     subnet_id = aws_subnet.private_subnet.id
@@ -63,7 +63,7 @@ resource "aws_instance" "dbserver" {
     tags = {
       Name = "db-server"
     }
-    user_data = file("script/user.sh")
+    # user_data = file("script/user.sh")
     
 
     # connection {
